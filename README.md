@@ -1,6 +1,6 @@
 1. Install Python.
 2. Download MakeMeRichBot.py
-3. Open the file with Notepad and change `YOURUSERNAME` to your own username.
+3. Open the file with Notepad and change `YOURUSERNAME` to your own username(also check other settings if you like)
 4. Open the file with Python.
 5. Enjoy, and build your own! ¯\*(ツ)*/¯
 
