@@ -1,8 +1,50 @@
 import json, os, time
 from datetime import datetime, timezone
 
+# ================= USERNAME SETUP =================
+
+CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json")
+
+
+def get_username():
+    # If config already exists, load the saved username
+    if os.path.exists(CONFIG_FILE):
+        try:
+            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                config = json.load(f)
+
+            username = config.get("username")
+
+            if username:
+                print(f"Using saved username: {username}")
+                return username
+
+        except Exception:
+            pass
+
+    # Ask for username the first time
+    print("======================================")
+    print("       SCREEN STOCKS TRADER")
+    print("======================================")
+    print()
+    username = input("Enter your Windows username: ").strip()
+
+    while not username:
+        print("Username cannot be empty.")
+        username = input("Enter your Windows username: ").strip()
+
+    # Save username
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        json.dump({"username": username}, f, indent=4)
+
+    print(f"\nUsername saved: {username}")
+
+    return username
+
+
+USERNAME = get_username()
 # ================= SETTINGS =================
-BASE = r"C:\Users\YOURUSERNAME\AppData\LocalLow\Conradical Games\Screen Stocks\mods"
+BASE = rf"C:\Users\{USERNAME}\AppData\LocalLow\Conradical Games\Screen Stocks\mods"
 MARKET_FILE = BASE + r"\export\market.json"
 COMMAND_DIR = BASE + r"\commands\$PLAIN"
 
