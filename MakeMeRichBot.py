@@ -1,8 +1,8 @@
 import json, os, time
-from datetime import datetime
+from datetime import datetime, timezone
 
 # ================= SETTINGS =================
-BASE = r"C:\Users\YOURUSERNAME\AppData\LocalLow\Conradical Games\Screen Stocks\mods"
+BASE = r"C:\Users\orange boy\AppData\LocalLow\Conradical Games\Screen Stocks\mods"
 MARKET_FILE = BASE + r"\export\market.json"
 COMMAND_DIR = BASE + r"\commands\$PLAIN"
 
@@ -15,8 +15,8 @@ TRADER_ENABLED = True
 TRADER_BUY = 600          # BUY when price <=
 TRADER_CLOSE = 900        # CLOSE when price >
 
-# Crash mode (start/end as (hour, minute))
-CRASH_START, CRASH_END = (20, 50), (21, 10)
+# Crash mode (start/end as (hour, minute)) - UTC
+CRASH_START, CRASH_END = (17, 50), (18, 10)
 CRASH_SHORT = 900
 CRASH_BUY = 15
 
@@ -92,7 +92,7 @@ def trade(side, owned, shorted):
 
 
 def in_crash_time():
-    now = datetime.now()
+    now = datetime.now(timezone.utc)
     return CRASH_START <= (now.hour, now.minute) <= CRASH_END
 
 
@@ -139,7 +139,6 @@ def main():
             crash_mode(price, owned, shorted)
         elif TRADER_ENABLED:
             trader_mode(price, owned, shorted)
-
 
 if __name__ == "__main__":
     main()
