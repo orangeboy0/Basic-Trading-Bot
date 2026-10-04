@@ -2,7 +2,7 @@ import json, os, time
 from datetime import datetime, timezone
 
 # ================= SETTINGS =================
-BASE = r"C:\Users\orange boy\AppData\LocalLow\Conradical Games\Screen Stocks\mods"
+BASE = r"C:\Users\YOURUSERNAME\AppData\LocalLow\Conradical Games\Screen Stocks\mods"
 MARKET_FILE = BASE + r"\export\market.json"
 COMMAND_DIR = BASE + r"\commands\$PLAIN"
 
